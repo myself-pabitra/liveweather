@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Header from "./Header";
-
+import weatherContext from "../context/WeatherContext";
 const Home = () => {
-  const [weatherData, setWeatherData] = useState(null);
+  // const [weatherData, setWeatherData] = useState(null);
+
+  const context = useContext(weatherContext);
+  const { weatherResultData } = context;
+  // console.log("Data from Home", weatherResultData);
 
   return (
     <>

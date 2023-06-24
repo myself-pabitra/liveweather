@@ -729,7 +729,7 @@ article.container::before {
   /* Custom Property */
 
   :root {
-    --heading: 8rem;
+    --heading: 6rem;
     --title-2: 2rem;
   }
   .container {

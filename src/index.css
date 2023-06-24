@@ -47,7 +47,8 @@
   --ff-nunito-sans: "Nunito Sans", sans-serif;
 
   /* font size */
-  --heading: 5.6rem;
+  --heading: 4.6rem;
+  /* --heading: 5.6rem; */
   --title-1: 2rem;
   --title-2: 1.8rem;
   --title-3: 1.6rem;

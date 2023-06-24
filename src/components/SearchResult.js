@@ -1,35 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import weatherContext from "../context/WeatherContext";
 
 const SearchResult = (props) => {
-  const [weatherResultData, setweatherResultData] = useState([]);
+  // const [weatherResultData, setweatherResultData] = useState([]);
 
-  // Check if searchResults prop is defined before mapping over it
-  if (!props.searchResults) {
-    return null;
-  }
+  const context = useContext(weatherContext);
+  const { searchResults, handleWeatherClick, toggleSearch } = context;
 
-  const fetchWeatherData = async (lat, lon) => {
-    const api_key = "f55ffb59720c2c98d36ef05506a1b34f";
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${api_key}`;
-
-    try {
-      let response = await fetch(url);
-      let data = await response.json();
-      console.log("Weather data", data);
-      setweatherResultData(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const handleWeatherClick = (event) => {
+  const handleMultipleClicks = (event) => {
     event.preventDefault();
     const { lat, lon } = event.currentTarget.dataset;
-    fetchWeatherData(lat, lon);
+    handleWeatherClick(lat, lon); // Pass lat and lon as arguments
+    toggleSearch();
+    // handleLatLonClick(lat, lon); // Pass lat and lon as arguments
   };
 
   return (
     <ul className="view-list" data-search-list>
-      {props.searchResults.map((result) => (
+      {searchResults.map((result) => (
         <li className="view-item" key={result.lat}>
           <span className="m-icon">location_on</span>
           <div>
@@ -41,7 +29,7 @@ const SearchResult = (props) => {
           <a
             href={`#/weather?lat=${result.lat}&lon=${result.lon}`}
             className="item-link has-state"
-            onClick={handleWeatherClick}
+            onClick={handleMultipleClicks}
             data-lat={result.lat}
             data-lon={result.lon}
             aria-label={`${result.name} weather`}

@@ -1,43 +1,26 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
+import weatherContext from "../context/WeatherContext";
 import SearchResult from "./SearchResult";
 const Header = (props) => {
-  const [isSearchActive, setSearchActive] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [showComponent, setShowComponent] = useState(false);
+  const context = useContext(weatherContext);
+  const {
+    searchQuery,
+    setSearchQuery,
+    showComponent,
+    isSearchActive,
+    toggleSearch,
+  } = context;
+  // console.log("Weather data passed", weatherResultData);
+  // const [isSearchActive, setSearchActive] = useState(false);
 
-  const toggleSearch = () => {
-    setSearchActive((prevSearchActive) => !prevSearchActive);
-  };
+  // const toggleSearch = () => {
+  //   setSearchActive((prevSearchActive) => !prevSearchActive);
+  // };
 
   const handleSearchChange = (event) => {
     const { value } = event.target;
     setSearchQuery(value);
   };
-
-  const searchCity = async () => {
-    const api_key = "f55ffb59720c2c98d36ef05506a1b34f";
-    let url = `http://api.openweathermap.org/geo/1.0/direct?q=${searchQuery}&limit=5&appid=${api_key}`;
-    try {
-      let response = await fetch(url);
-      let data = await response.json();
-      console.log("entire data", data);
-
-      setSearchResults(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (searchQuery !== "") {
-      searchCity();
-      setShowComponent(true);
-    } else {
-      setShowComponent(false);
-    }
-  }, [searchQuery]);
 
   return (
     <header className="header">
@@ -78,27 +61,10 @@ const Header = (props) => {
             className={`search-result ${searchQuery ? "active" : ""}`}
             data-search-result
           >
-            {/* <ul className="view-list" data-search-list>
-              {searchResults.map((result) => (
-                <li className="view-item" key={result.id}>
-                  <span className="m-icon">location_on</span>
-                  <div>
-                    <p className="item-title">{result.name}</p>
-                    <p className="label-2 item-subtitle">{result.location}</p>
-                  </div>
-                  <a
-                    href="/"
-                    className="item-link has-state"
-                    onClick={toggleSearch}
-                  ></a>
-                </li>
-              ))}
-            </ul> */}
-            {/* <SearchResult toggleSearch={toggleSearch} /> */}
             {showComponent && (
               <SearchResult
                 toggleSearch={toggleSearch}
-                searchResults={searchResults}
+                // searchResults={searchResults}
               />
             )}
           </div>
