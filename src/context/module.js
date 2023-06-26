@@ -84,6 +84,7 @@ export const WeekDayNames = [
   "Sunday",
   "Monday",
   "Tuesday",
+  "Wednesday",
   "Thursday",
   "Friday",
   "Saturday",
@@ -136,26 +137,26 @@ export const aqiText = {
   1: {
     level: "Good",
     message:
-      "Air quality is considered satisfactory, and air pollution poses littleor no risk ",
+      "Air quality is satisfactory with little or no risk of air pollution. Enjoy the clean and fresh environment.",
   },
   2: {
     level: "Fair",
     message:
-      "Air quality is acceptable ; however for some pollutants there may be a moderate health concern for a very small number of people who are usually sensitive to air pollution  ",
+      "Air quality is acceptable, but there may be a moderate health concern for sensitive individuals. Take precautions if necessary.",
   },
   3: {
     level: "Moderate",
     message:
-      "Number of sensitive groups may experience health effects. The general public is not likely to be affected  ",
+      "Some sensitive groups may experience health effects due to moderate air pollution. Most people are unlikely to be affected significantly.",
   },
   4: {
     level: "Poor",
     message:
-      "Everyone may begin to experience health effects.members of senesitive groups may experience more serious health effects ",
+      "Air quality is deteriorating, and everyone may begin to experience health effects. Sensitive groups may be particularly affected. Limit outdoor activities if possible.",
   },
   5: {
     level: "Very Poor",
     message:
-      "Health warning of emergency conditions. the entire population is more likely to be affected",
+      "Health warning of emergency conditions. The entire population is more likely to be affected by severe air pollution. Stay indoors and minimize exposure.",
   },
 };

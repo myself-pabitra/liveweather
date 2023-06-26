@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import weatherContext from "../context/WeatherContext";
 import SearchResult from "./SearchResult";
-const Header = (props) => {
+const Header = () => {
   const context = useContext(weatherContext);
   const {
     searchQuery,
